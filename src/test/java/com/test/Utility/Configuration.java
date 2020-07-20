@@ -1,0 +1,66 @@
+package com.test.Utility;
+
+import org.apache.logging.log4j.*;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.URL;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.Enumeration;
+import java.util.Properties;
+
+public class Configuration {
+
+    private Configuration() {
+    }
+
+    private static final Logger log = LogManager.getLogger(Configuration.class.getName());
+    private static Properties properties;
+    public static void load() throws IOException {
+        Configuration config = new Configuration();
+        properties = new Properties();
+        Enumeration<URL> enumerator = config.getClass().getClassLoader().getResources("/");
+        while(enumerator.hasMoreElements()) {
+            System.out.println(enumerator.nextElement());
+        }
+        try (InputStream is = Files.newInputStream(Paths.get("Test.properties"))) {
+
+
+            BufferedReader reader = new BufferedReader(
+                    new InputStreamReader(
+                            is,
+                            StandardCharsets.UTF_8));
+            try {
+                properties.load(reader);
+            } finally {
+                is.close();
+                reader.close();
+            }
+        }
+    }
+    public static String get(String option) {
+       if (properties == null) {
+            try {
+                load();
+            } catch (IOException e) {
+                log.error("error getting string", e);
+            }
+        }
+        String value = properties.getProperty(option);
+        if (value == null) {
+            return "";
+        }
+        return value;
+    }
+    public static long timeout() {
+        String value = get("timeout");
+        if (value == null || value.trim().equals("")) {
+            return 60L;
+        }
+        return Long.parseLong(value.trim());
+    }
+}

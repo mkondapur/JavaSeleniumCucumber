@@ -1,0 +1,49 @@
+@Search
+Feature: Google Search
+
+  Scenario Outline: Perfrom google search by keyword # features/SampleTest.feature:5
+    Given I navigate to <URL> website
+    When I perform search using <Keyword> keyword
+    Then I get search result <Keyword>
+
+    Examples: 
+
+  @Search
+  Scenario Outline: Perfrom google search by keyword    # features/SampleTest.feature:12
+    Given I navigate to https://www.google.com/ website # SampleSteps.i_navigate_to_https_www_google_com_website(String)
+    When I perform search using Test Automation keyword # SampleSteps.i_perform_search_using_Test_Automation_keyword(String)
+      org.openqa.selenium.ElementNotVisibleException: element not visible
+        (Session info: chrome=80.0.3987.122)
+        (Driver info: chromedriver=2.38.552522 (437e6fbedfa8762dec75e2c5b3ddb86763dc9dcb),platform=Windows NT 10.0.16299 x86_64) (WARNING: The server did not provide any stacktrace information)
+      Command duration or timeout: 47 milliseconds
+      Build info: version: '2.41.0', revision: '3192d8a6c4449dc285928ba024779344f5423c58', time: '2014-03-27 11:29:39'
+      System info: host: 'SKPSP94080001P', ip: '180.89.28.12', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '1.8.0_201'
+      Driver info: org.openqa.selenium.chrome.ChromeDriver
+      Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.38.552522 (437e6fbedfa8762dec75e2c5b3ddb86763dc9dcb), userDataDir=C:\Users\C0255092\AppData\Local\Temp\scoped_dir23372_11061}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=80.0.3987.122, platform=XP, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=false, acceptInsecureCerts=false, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true, setWindowRect=true, unexpectedAlertBehaviour=}]
+      Session ID: ca697f4549a3f12b0218fcfcb28c1f30
+      	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+      	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+      	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+      	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+      	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:193)
+      	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:145)
+      	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:595)
+      	at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:268)
+      	at org.openqa.selenium.remote.RemoteWebElement.click(RemoteWebElement.java:79)
+      	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+      	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+      	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+      	at java.lang.reflect.Method.invoke(Method.java:498)
+      	at org.openqa.selenium.support.pagefactory.internal.LocatingElementHandler.invoke(LocatingElementHandler.java:41)
+      	at com.sun.proxy.$Proxy20.click(Unknown Source)
+      	at com.test.Page.SamplePage.performGoogleSearch(SamplePage.java:27)
+      	at com.test.Steps.SampleSteps.i_perform_search_using_Test_Automation_keyword(SampleSteps.java:26)
+      	at ✽.When I perform search using Test Automation keyword(features/SampleTest.feature:7)
+
+    Then I get search result Test Automation            # SampleSteps.i_get_search_result(String)
+
+  @Search
+  Scenario Outline: Perfrom google search by keyword    # features/SampleTest.feature:13
+    Given I navigate to https://www.google.com/ website # SampleSteps.i_navigate_to_https_www_google_com_website(String)
+    When I perform search using Corona news keyword     # SampleSteps.i_perform_search_using_Test_Automation_keyword(String)
+    Then I get search result Corona news                # SampleSteps.i_get_search_result(String)
